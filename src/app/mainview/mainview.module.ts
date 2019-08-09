@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapModule } from './map/map.module';
-import { SidebarModule } from './sidebar/sidebar.module';
-import { DataviewModule } from './dataview/dataview.module';
+import { MapComponent } from './map/map.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DataviewComponent } from './dataview/dataview.component';
+
 
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MapModule,
-    SidebarModule,
-    DataviewModule,
-  ]
+  declarations: [MapComponent, SidebarComponent, DataviewComponent],
+  imports: [CommonModule],
+  exports: [MapComponent, SidebarComponent, DataviewComponent]
 })
 export class MainviewModule { }

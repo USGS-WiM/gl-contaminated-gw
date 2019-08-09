@@ -12,7 +12,7 @@ import { MainviewModule } from './mainview/mainview.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainviewModule
+    MainviewModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
