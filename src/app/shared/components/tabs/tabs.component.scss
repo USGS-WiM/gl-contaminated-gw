@@ -1,0 +1,57 @@
+@import '../../../variables.scss';
+
+.tab-close {
+    color: gray;
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .tab-ul {
+        list-style: none;
+        width: 100%;
+        padding: 0 20px 10px 20px;
+        box-sizing: border-box;
+        margin: 0;
+        display: flex;
+        min-height: fit-content;
+
+
+        li{
+            margin: 0 10px 0 0;
+
+            a{
+                transition: $transition;
+                font-size: 14px;
+                box-sizing: border-box;
+                padding: 6px 0;
+                font-family: $sans;
+                font-weight: 600;
+                letter-spacing: -0.3px;
+                text-decoration: none;
+                color: fade-out($black, 0.5);
+                transition: $transition;
+
+                &:hover{
+                    text-decoration: underline;
+                    color: $black;
+					transition: $transition;
+					cursor: pointer;
+                }
+            }
+
+            &.active{
+
+                a{
+                    color: $blue;
+                    transition: $transition;
+                    text-decoration: underline;
+
+                    &:hover{
+                        color: $blue;
+                    }
+                }
+            }
+        }
+  }
+
+

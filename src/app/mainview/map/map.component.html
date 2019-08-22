@@ -1,1 +1,23 @@
- <div id="map"></div>
+ <div class="collapsible-header">
+
+	</div>
+	<div id="mapWrapper" [ngClass]="{ 'collapsed': collapsedMap }">
+		<div id="map"></div>
+		<!-- Collapse Map -->
+		<!-- <div id="collapseMap" (click)="collapsedMap = true">
+			<div>
+				<i class="far fa-collapse"></i>
+				<b>Collapse Map</b>
+			</div>
+		</div> -->
+		<!-- Expand Map -->
+		<div id="toggleMap" (click)="collapsedMap = !collapsedMap">
+			<div>
+				<i class="far" [ngClass]="{ 'fa-expand': collapsedMap, 'fa-minus-square': !collapsedMap }"></i>
+				<b *ngIf="collapsedMap">Expand Map</b>
+				<b *ngIf="!collapsedMap">Collapse Map</b>
+			</div>
+		</div>
+	</div>
+
+	
