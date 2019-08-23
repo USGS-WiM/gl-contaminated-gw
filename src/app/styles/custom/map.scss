@@ -1,0 +1,101 @@
+// Map and legend tweaks
+
+#mapWrapper{
+    display: block;
+    width: 100%;
+    position: relative;
+
+    #map{
+        display: block;
+        width: 100%;
+        height: 400px;
+        background-color: fade-out($black, 0.8);
+        border-bottom-left-radius: $borderRadiusL;
+        transition: 0.175s ease;
+    }
+
+    #collapseMap{
+        display: block;
+        text-align: right;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    #toggleMap{
+        transition: $transition;
+        background-color: transparent;
+        text-align: right;     
+        box-sizing: border-box;
+        padding: 8px;   
+
+        div{
+            display: flex;
+            justify-content: center;
+            opacity: 0.75;
+            transition: $transition;
+
+            i,b{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            i{
+                margin-right: 5px;
+                font-size: 16px;
+            }
+            b{
+                font-size: 13px;
+                font-weight: 600;
+                font-family: $sans;
+            }
+        }
+
+        &:hover{
+            transition: $transition;
+            cursor: pointer;
+
+            div{
+                opacity: 1;
+                transition: $transition;
+            }
+        }
+    }
+
+    // Map collapsed/minimized
+    // Map collapsed/minimized
+    &.collapsed{
+
+        #map{
+            height: 110px;
+            transition: 0.175s ease;
+
+            .leaflet-control-container,
+            .leaflet-control{
+                display: none;
+            }
+        }
+
+        #toggleMap{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-color: fade-out($black, 0.35);
+            z-index: 401;
+            display: flex;
+            transition: $transition;
+
+            &:hover{
+                background-color: fade-out($black, 0.525);
+            }
+        }
+
+    }
+}

@@ -4,7 +4,7 @@ declare let L;
 @Component({
   selector: 'app-mainview-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
 
