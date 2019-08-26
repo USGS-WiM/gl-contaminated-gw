@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import { JsonPipe } from '@angular/common';
 declare let L;
 
 @Component({
@@ -13,19 +15,8 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     var siteInfo: any;
-var xmlSites: any;
-
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://test.wim.usgs.gov/great-lakes-groundwater-contamination-test/fcsi-rscf.xml')
-xhr.withCredentials = true;
-xhr.onreadystatechange = function(){
-    if (xhr.readyState === 3){
-        console.log(xhr.response)
-        xmlSites = xhr.response
-    }
-}
-xhr.setRequestHeader("Content-Type", 'text/xml')
-//xhr.send(xhr);
+    var canadaSites: JsonPipe;
+    console.log(ontarioJSON);
 
     var topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
       attribution: ""
@@ -48,17 +39,24 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
       simplifyFactor: 0.35
   }).addTo(map); 
 
-  var overlayLayers = { 
-    "Basin Area" : basinArea,
-    "U.S. Sites": usSites
-}
+    canadaSites = L.geoJson(ontarioJSON, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng);
+    }
+  }).addTo(map);
+
+    var overlayLayers = {
+      "Canadaian Sites": canadaSites,
+      "Basin Area": basinArea,
+      "U.S. Sites": usSites
+    }
 
 var baseMaps = {
     "Satellite": satellite,
     "Topographic": topo
 }
 
-L.control.layers(baseMaps, overlayLayers).addTo(map);
+L.control.layers(baseMaps, overlayLayers, canadaSites).addTo(map);
 
   }
 
