@@ -1,0 +1,43 @@
+// Branding
+// Branding
+// Branding
+
+header#main{
+    #branding{
+
+        // Collapsible Title
+        #title{
+            color: white;
+            display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			flex-direction: column;
+			padding-left: 15px;
+            &:hover{
+                cursor: default;
+            }
+        }
+    }
+}
+
+
+// Collapsible sections - Map & Data
+// Collapsible sections - Map & Data
+// Collapsible sections - Map & Data
+
+.collapsible{
+
+    
+}
+
+// Single select Dropdown
+// Removes (X) next to items
+.single-select{
+    .ng-value-icon{
+        display: none !important;
+    }
+
+    .ng-value{
+        padding-right: 2px;
+    }
+}

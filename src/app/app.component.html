@@ -1,9 +1,123 @@
-<div style="text-align:left">
+<!-- 
+  Main wrapper
+  Flex column
+-->
 
-            <app-mainview-sidebar></app-mainview-sidebar>
+<div id="outer" [ngClass]="{ blur: aboutModal }">
+	<!-- 
+		Page header 
+		- Nav, links, branding, etc
+	-->
+	<header id="main">
+		<!-- Branding / Logo --> 
+		<div id="branding">
+			<i
+				class="far"
+				id="sidebarToggle"
+				(click)="expandSidebar = !expandSidebar"
+				[ngClass]="{ 'fa-bars': !expandSidebar, 'fa-times': expandSidebar }"
+			></i>
+			<!-- USGS Logo -->
+			<a href="https://usgs.gov" alt="USGS Home Page" title="USGS Home Page" target="_blank" id="usgsLogo">
+				<img src="https://www.usgs.gov/sites/all/themes/usgs_palladium/logo.png" />
+			</a>
+			<!-- Title -->
+			<div id="title">
+				Great Lakes Groundwater Site Status
+			</div>
+			<div id="demoLabel">(DEMO)</div>
+		</div>
+		<!-- Links on right -->
+		<nav id="headerLinks">
+			<a (click)="aboutModal = true">About</a>
+		</nav>
+	</header>
 
-            <app-mainview-map></app-mainview-map>    
+	<!-- 
+		Main body wrapper 
+		Main body wrapper 
+		Main body wrapper 
+	-->
+	<div id="body">
+		<!-- <app-loading-screen></app-loading-screen> -->
+		<!-- 
+		Sidebar
+		Sidebar
+		-->
+		<app-mainview-sidebar></app-mainview-sidebar>
+		
+		
+		
 
-            <app-mainview-dataview></app-mainview-dataview>
+		<!-- 
+		Content 
+		Content 
+		Content 
+		-->
+		<main>
+		<!-- Map -->
+			<!-- <div id="map"></div> -->
+			<app-mainview-map></app-mainview-map>    
+			
+			<app-mainview-dataview></app-mainview-dataview>
+			
 
+		</main>
+		<!-- End Main Content -->
+	</div>
+<!-- End Main Body Wrapper-->
 </div>
+
+
+<!-- 
+  ================================================================
+  Modals
+  Modals
+  Modals - 1,0000 z-index base
+  ================================================================
+ -->
+<!-- About Modal -->
+<div class="modal-wrapper" *ngIf="aboutModal" (click)="aboutModal = false">
+	<div class="modal" id="aboutModal" (click)="$event.stopPropagation()">
+		<div class="modal-header">
+		<div class="title">About</div>
+		<div class="modal-close" (click)="aboutModal = false">&times;</div>
+		</div>
+	
+		<div class="modal-content">
+		
+	
+		<tabs>
+			<tab [tabTitle]="'About This'">
+				<br/>
+				<h6>What is this?</h6>
+	
+				<p>
+					We're not sure.
+				</p>
+			</tab>
+			<tab [tabTitle]="'Tab 2'">
+				<br/>
+				<h6>Another tab?</h6>
+				<p style="margin-bottom: 0;">Whoa!</p>
+			</tab>
+			<tab [tabTitle]="'Another one'">
+					<br/>
+					<h6>And another one?!</h6>
+					<p>
+						Wow!
+					</p>
+				</tab>
+			</tabs>
+		
+		
+		</div>
+	
+		<div class="modal-actions right">
+		<button (click)="aboutModal = false">Close</button>
+		</div>
+	</div>
+	</div>
+
+
+
