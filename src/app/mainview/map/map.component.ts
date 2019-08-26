@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as ontarioJSON from '../../../assets/OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import * as ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import { JsonPipe } from '@angular/common';
 declare let L;
 
 @Component({
@@ -14,6 +15,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     var siteInfo: any;
+    var canadaSites: JsonPipe;
     console.log(ontarioJSON);
 
     var topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
@@ -37,8 +39,8 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
       simplifyFactor: 0.35
   }).addTo(map); 
 
-  var canadaSites = L.geoJson(ontarioJSON, {
-    pointToLayer: function (eature, latlng) {
+    canadaSites = L.geoJson(ontarioJSON, {
+    pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng);
     }
   }).addTo(map);
