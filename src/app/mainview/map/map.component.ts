@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
-import { JsonPipe } from '@angular/common';
+import ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
 declare let L;
 
 @Component({
@@ -15,7 +14,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     var siteInfo: any;
-    var canadaSites: JsonPipe;
+    var canadaSites;
     console.log(ontarioJSON);
 
     var topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
