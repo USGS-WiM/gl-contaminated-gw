@@ -12,7 +12,6 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     var siteInfo: any;
     var canadaSites;
     console.log(ontarioJSON);
@@ -38,9 +37,9 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
       simplifyFactor: 0.35
   }).addTo(map); 
 
-    canadaSites = L.geoJson(ontarioJSON, {
+  canadaSites = L.geoJson(ontarioJSON, {
     pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng);
+      return L.circleMarker(latlng).bindPopup(feature.properties.name);
     }
   }).addTo(map);
 
@@ -56,7 +55,7 @@ var baseMaps = {
 }
 
 L.control.layers(baseMaps, overlayLayers, canadaSites).addTo(map);
-
+map.removeLayer(canadaSites)
+canadaSites.addTo(map);
   }
-
 }
