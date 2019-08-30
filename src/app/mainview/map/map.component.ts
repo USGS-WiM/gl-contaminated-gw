@@ -32,6 +32,13 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
       layers: [0]
   }).addTo(map);
 
+  usSites.bindPopup(function (error, featureCollection) {
+    if(error || featureCollection.features.length === 0) {
+      return false;
+    } else {
+      return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID;}
+    }); 
+
  var basinArea = L.esri.featureLayer({
       url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3',
       simplifyFactor: 0.35
@@ -44,18 +51,15 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
   }).addTo(map);
 
     var overlayLayers = {
-      "Canadaian Sites": canadaSites,
       "Basin Area": basinArea,
-      "U.S. Sites": usSites
+      "U.S. Sites": usSites,
+      "Canadaian Sites": canadaSites
     }
 
 var baseMaps = {
     "Satellite": satellite,
     "Topographic": topo
 }
-
-L.control.layers(baseMaps, overlayLayers, canadaSites).addTo(map);
-map.removeLayer(canadaSites)
-canadaSites.addTo(map);
+L.control.layers(baseMaps, overlayLayers).addTo(map);
   }
 }
