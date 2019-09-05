@@ -12,7 +12,6 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     var siteInfo: any;
     var canadaSites;
     console.log(ontarioJSON);
@@ -33,30 +32,34 @@ var basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/M
       layers: [0]
   }).addTo(map);
 
+  usSites.bindPopup(function (error, featureCollection) {
+    if(error || featureCollection.features.length === 0) {
+      return false;
+    } else {
+      return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID;}
+    }); 
+
  var basinArea = L.esri.featureLayer({
       url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3',
       simplifyFactor: 0.35
   }).addTo(map); 
 
-    canadaSites = L.geoJson(ontarioJSON, {
+  canadaSites = L.geoJson(ontarioJSON, {
     pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng);
+      return L.circleMarker(latlng).bindPopup(feature.properties.name);
     }
   }).addTo(map);
 
     var overlayLayers = {
-      "Canadaian Sites": canadaSites,
       "Basin Area": basinArea,
-      "U.S. Sites": usSites
+      "U.S. Sites": usSites,
+      "Canadaian Sites": canadaSites
     }
 
 var baseMaps = {
     "Satellite": satellite,
     "Topographic": topo
 }
-
-L.control.layers(baseMaps, overlayLayers, canadaSites).addTo(map);
-
+L.control.layers(baseMaps, overlayLayers).addTo(map);
   }
-
 }
