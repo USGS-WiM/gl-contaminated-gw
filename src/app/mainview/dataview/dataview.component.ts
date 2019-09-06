@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dataview.component.scss']
 })
 export class DataviewComponent implements OnInit {
+  dataLoading;
 
   constructor() { }
 

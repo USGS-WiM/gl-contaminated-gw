@@ -8,6 +8,7 @@ declare let L;
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  collapsedMap;
 
   constructor() { }
 
