@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  expandSidebar;
+  showBasemaps;
+  chosenBaseLayer;
+  showSection2;
+  toggleLayer;
 
   constructor() { }
 
