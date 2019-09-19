@@ -13,8 +13,8 @@ import { MainviewModule } from './mainview/mainview.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-	MainviewModule,
-	SharedModule
+    MainviewModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
