@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // tslint:disable-next-line: max-line-length
-import ontarioJSON from './OntarioDataStatic.json'; // https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import ontarioJSON from './OntarioClipped_9.26.json'; // https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
 declare let L;
 
 @Component({
@@ -9,6 +9,7 @@ declare let L;
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  summaryStats = "yo whuddup";
   collapsedMap;
 
   constructor() { }
@@ -48,7 +49,7 @@ export class MapComponent implements OnInit {
 
     canadaSites = L.geoJson(ontarioJSON, {
     pointToLayer(feature, latlng) {
-      return L.circleMarker(latlng).bindPopup(feature.properties.name);
+      return L.circleMarker(latlng).bindPopup(feature.properties.Name);
     }
   }).addTo(map);
 
