@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // tslint:disable-next-line: max-line-length
-import ontarioJSON from './OntarioClipped_9.26.json'; // https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+//import ontarioJSON from './OntarioClipped_9.26.json';
+import {MapService} from '../../shared/services/map.service'
 declare let L;
 
 @Component({
@@ -9,14 +10,14 @@ declare let L;
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  summaryStats = "yo whuddup";
   collapsedMap;
 
-  constructor() { }
+  constructor(private _MapService: MapService) { }
 
   ngOnInit() {
-    let canadaSites;
-    console.log(ontarioJSON);
+
+    let usSites = this._MapService.getUSsiteData();
+    let canadaSites = this._MapService.getCanadaData();
 
     const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: ''
@@ -29,28 +30,14 @@ export class MapComponent implements OnInit {
     const map = L.map('map').setView([43.4, -84.6], 5);
     const layer = topo.addTo(map);
 
-    const usSites = L.esri.dynamicMapLayer({
-      url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
-      layers: [0]
-  }).addTo(map);
+    usSites.addTo(map);
+    canadaSites.addTo(map);
 
     // tslint:disable-next-line: only-arrow-functions
-    usSites.bindPopup(function(error, featureCollection) {
-    if (error || featureCollection.features.length === 0) {
-      return false;
-    } else {
-      return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; }
-    });
 
     const basinArea = L.esri.featureLayer({
       url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3',
       simplifyFactor: 0.35
-  }).addTo(map);
-
-    canadaSites = L.geoJson(ontarioJSON, {
-    pointToLayer(feature, latlng) {
-      return L.circleMarker(latlng).bindPopup(feature.properties.Name);
-    }
   }).addTo(map);
 
     const overlayLayers = {
