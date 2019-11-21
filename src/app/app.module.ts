@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainviewModule } from './mainview/mainview.module';
+import {MapService} from './shared/services/map.service';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,10 @@ import { MainviewModule } from './mainview/mainview.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-	MainviewModule,
-	SharedModule
+    MainviewModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

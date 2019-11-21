@@ -9,5 +9,4 @@ export class AppComponent {
   title = 'gl-contaminated-gw';
   aboutModal;
   expandSidebar;
-  
 }

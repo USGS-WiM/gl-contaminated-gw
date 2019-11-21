@@ -1,10 +1,25 @@
 <div id="dataView" [ngClass]="{'data-blur': dataLoading == true }">
 
 		<app-dataloader-div id="dataLoader"></app-dataloader-div>
-	
-	
-		<div class="site-meta">
-			<h1>Data</h1>
-		</div>
-	
+
+
+    <app-tabs>
+			<tab [tabTitle]="'Summary Stats'">
+				<br/>
+				<p>
+					{{ usData }}
+					<br>
+					{{ canadaData }}
+				</p>
+			</tab>
+			<tab [tabTitle]="'Site Information'">
+				<br/>
+		<p style="margin-bottom: 0;">
+				{{ usData }}
+				<br>
+			{{ canadaData }}
+      </p>
+			</tab>
+			</app-tabs>
+
 	</div>
