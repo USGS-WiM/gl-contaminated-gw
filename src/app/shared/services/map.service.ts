@@ -22,7 +22,8 @@ export class MapService {
   getUSsiteData(){
       const usSites = L.esri.dynamicMapLayer({
         url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
-        layers: [0]
+        layers: [0],
+        layerDefs: { 0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'" }
     })
       // tslint:disable-next-line: only-arrow-functions
       const self = this

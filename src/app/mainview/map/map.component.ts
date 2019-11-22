@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import basins_2k from './basin_simple_2km.json';
 // tslint:disable-next-line: max-line-length
 //import ontarioJSON from './OntarioClipped_9.26.json';
 import {MapService} from '../../shared/services/map.service'
@@ -30,8 +32,23 @@ export class MapComponent implements OnInit {
     const map = L.map('map').setView([43.4, -84.6], 5);
     const layer = topo.addTo(map);
 
-    usSites.addTo(map);
-    canadaSites.addTo(map);
+    /* var usSites = L.esri.get('https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer', {
+      spatialRel: "esriSpatialRelIntersects",
+      geometryType: "esriGeometryPolygon",
+      geometry: L.esri.Utils.geojsonToArcGIS(basins_2k)
+    }, function(error, response){
+      var geojson = L.esri.Utils.responseToFeatureCollection(response);
+      console.log("SUCCESS!  " + geojson);
+    }).addTo(map); */
+
+    /* usSites = L.esri.dynamicMapLayer({
+      url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
+      layers: [0],
+      layerDefs: {0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'"}
+  }).addTo(map); */
+
+  usSites.addTo(map);
+  canadaSites.addTo(map);
 
     // tslint:disable-next-line: only-arrow-functions
 
