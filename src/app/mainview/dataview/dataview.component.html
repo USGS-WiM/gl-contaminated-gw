@@ -1,25 +1,28 @@
-<div id="dataView" [ngClass]="{'data-blur': dataLoading == true }">
+<div id="dataView" [ngClass]="{'data-blur': dataLoading == true, 'collapsed': collapsedPanel }">
 
 		<app-dataloader-div id="dataLoader"></app-dataloader-div>
 
-
-    <app-tabs>
-			<tab [tabTitle]="'Summary Stats'">
-				<br/>
-				<p>
-					{{ usData }}
-					<br>
-					{{ canadaData }}
-				</p>
-			</tab>
-			<tab [tabTitle]="'Site Information'">
-				<br/>
-		<p style="margin-bottom: 0;">
+<div  class='site-meta dataview-padding'>
+	<app-tabs>
+		<tab [tabTitle]="'Summary Stats'">
+			<br/>
+			<p>
 				{{ usData }}
 				<br>
-			{{ canadaData }}
-      </p>
-			</tab>
-			</app-tabs>
+				{{ canadaData }}
+			</p>
+		</tab>
+		<tab [tabTitle]="'Site Information'">
+			<br/>
+			<p style="margin-bottom: 0;">
+				{{ usData }}
+				<br>
+				{{ canadaData }}
+			</p>
+		</tab>
+	</app-tabs>
+
+</div>
+
 
 	</div>

@@ -8,6 +8,7 @@ import { DataviewComponent } from './dataview/dataview.component';
 
 
 
+
 @NgModule({
   declarations: [MapComponent, SidebarComponent, DataviewComponent],
   imports: [CommonModule, SharedModule],

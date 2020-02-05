@@ -1,21 +1,21 @@
- <div class="collapsible-header">
+<div class="collapsible-header">
 
+</div>
+
+<div id="mapWrapper" [ngClass]="{ 'collapsed': collapsedMap, 'expanded': collapsedDataPanel }">
+	<div id="map"></div>
+   
+	
+	<div id="toggleMap">
+        <div *ngIf="!collapsedDataPanel" (click)="collapsedMap = !collapsedMap; resizeMap();">
+            <i class="far" [ngClass]="{ 'fa-expand': collapsedMap, 'fa-minus-square': !collapsedMap }"></i>
+            <b *ngIf="collapsedMap">Expand Map</b>
+            <b *ngIf="!collapsedMap">Collapse Map</b>
+        </div>
+        <div *ngIf="!collapsedMap" (click)="expandCollapseDataPanel(); resizeMap();">
+            <i class="far" [ngClass]="{ 'fa-expand': collapsedDataPanel, 'fa-minus-square': !collapsedDataPanel }"></i>
+            <b *ngIf="!collapsedDataPanel">Collapse Data Panel</b>
+            <b *ngIf="collapsedDataPanel">Expand Data Panel</b>
+        </div>
 	</div>
-	<div id="mapWrapper" [ngClass]="{ 'collapsed': collapsedMap }">
-		<div id="map"></div>
-		<!-- Collapse Map -->
-		<!-- <div id="collapseMap" (click)="collapsedMap = true">
-			<div>
-				<i class="far fa-collapse"></i>
-				<b>Collapse Map</b>
-			</div>
-		</div> -->
-		<!-- Expand Map -->
-		<div id="toggleMap" (click)="collapsedMap = !collapsedMap">
-			<div>
-				<i class="far" [ngClass]="{ 'fa-expand': collapsedMap, 'fa-minus-square': !collapsedMap }"></i>
-				<b *ngIf="collapsedMap">Expand Map</b>
-				<b *ngIf="!collapsedMap">Collapse Map</b>
-			</div>
-		</div>
-	</div>
+</div>

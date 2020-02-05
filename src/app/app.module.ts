@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainviewModule } from './mainview/mainview.module';
-import {MapService} from './shared/services/map.service';
 
 @NgModule({
   declarations: [
@@ -14,10 +13,10 @@ import {MapService} from './shared/services/map.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MainviewModule,
     SharedModule
   ],
-  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
