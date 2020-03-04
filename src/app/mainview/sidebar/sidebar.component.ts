@@ -26,5 +26,7 @@ export class SidebarComponent implements OnInit {
     this._mapService.map.removeLayer(this._mapService.baseMaps['Gray']);
     this._mapService.map.removeLayer(this._mapService.baseMaps['Nautical']);
     this._mapService.map.addLayer(this._mapService.baseMaps[newVal]);
-}
+  }
+
+
 }
