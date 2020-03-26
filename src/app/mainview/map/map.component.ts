@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import ontarioJSON from './OntarioDataStatic.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import ontarioJSON from '../../../assets/OntarioClipped_9.26.json'; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
 import basins_2k from './basin_simple_2km.json';
 // tslint:disable-next-line: max-line-length
-//import ontarioJSON from './OntarioClipped_9.26.json';
 import {MapService} from '../../shared/services/map.service'
-declare let L;
+import {Map} from 'leaflet';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-mainview-map',
@@ -13,60 +13,61 @@ declare let L;
 })
 export class MapComponent implements OnInit {
   collapsedMap;
+  collapsedDataPanel;
 
-  constructor(private _MapService: MapService) { }
+  constructor(private _mapService: MapService) { }
 
   ngOnInit() {
 
-    let usSites = this._MapService.getUSsiteData();
-    let canadaSites = this._MapService.getCanadaData();
+    let usSites = this._mapService.getUSsiteData();
+    let canadaSites = this._mapService.getCanadaData(ontarioJSON);
+    
+    this._mapService.map = L.map('map', {
+      center: L.latLng(43.3, -84.6),
+      zoom: 5,
+      renderer: L.canvas()
+    });
+    //keeps the geojson always on the top of all other layers
+    this._mapService.map.createPane('basins');
+    //this._mapService.map.getPane('basins').style.zIndex = '1';
+    this._mapService.map.createPane('sites');
+    this._mapService.map.addLayer(this._mapService.baseMaps[this._mapService.chosenBaseLayer]);
+    this._mapService.map.addLayer(this._mapService.auxLayers['basinArea'])
+    
+    this._mapService.sitesLayer = L.featureGroup().addTo(this._mapService.map)
+    usSites.addTo(this._mapService.sitesLayer);
+    canadaSites.addTo(this._mapService.sitesLayer);
+    this._mapService.map.addLayer(this._mapService.sitesLayer);
+    
+     
 
-    const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: ''
-  });
-    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: ''
-});
-    const basinsUrl = 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3';
 
-    const map = L.map('map').setView([43.4, -84.6], 5);
-    const layer = topo.addTo(map);
+    this._mapService.DataPanelCollapse.subscribe(collapse => {
+      this.collapsedDataPanel = collapse;
+    });
 
-    /* var usSites = L.esri.get('https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer', {
-      spatialRel: "esriSpatialRelIntersects",
-      geometryType: "esriGeometryPolygon",
-      geometry: L.esri.Utils.geojsonToArcGIS(basins_2k)
-    }, function(error, response){
-      var geojson = L.esri.Utils.responseToFeatureCollection(response);
-      console.log("SUCCESS!  " + geojson);
-    }).addTo(map); */
+    
+  
+    //let usSites = this._mapService.getUSsiteData();
 
-    /* usSites = L.esri.dynamicMapLayer({
-      url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
-      layers: [0],
-      layerDefs: {0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'"}
-  }).addTo(map); */
+    //add empty feature group
+    //this.sitesLayer = L.featureGroup().addTo(this._mapService.map);
+    
+    //keeps the geojson always on the top of all other layers
+    /* this.map.createPane('basins');
+    this.map.createPane('geojson'); */
 
-  usSites.addTo(map);
-  canadaSites.addTo(map);
-
-    // tslint:disable-next-line: only-arrow-functions
-
-    const basinArea = L.esri.featureLayer({
-      url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3',
-      simplifyFactor: 0.35
-  }).addTo(map);
-
-    const overlayLayers = {
-      'Basin Area': basinArea,
-      'U.S. Sites': usSites,
-      'Canadaian Sites': canadaSites
-    };
-
-    const baseMaps = {
-    Satellite: satellite,
-    Topographic: topo
-};
-    L.control.layers(baseMaps, overlayLayers).addTo(map);
+    
   }
+
+  expandCollapseDataPanel() {
+    this._mapService.dataPanelCollapseSubject.next(!this.collapsedDataPanel);
+  }
+
+  resizeMap() {
+    setTimeout(() => {
+        this._mapService.map.invalidateSize()
+    }, 150);
+  }
+
 }

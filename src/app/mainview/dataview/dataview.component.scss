@@ -8,6 +8,7 @@
     width: 100%;
     max-width: 100%;
     margin: 0;
+    height: fit-content;
 
     &.data-blur{
 
@@ -15,6 +16,10 @@
         *:not(#dataLoader){
             filter: blur(3px);
         }
+    }
+
+    &.collapsed {
+		display: none;
     }
 
     // Site meta
@@ -28,5 +33,9 @@
             font-size: 26px;
             font-weight: 600;
         }
+    }
+
+    .dataview-padding{
+        padding: 15px 25px;
     }
 }
