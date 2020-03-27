@@ -51,7 +51,21 @@
     <!-- Filters Parameter Content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showSection2 }">
 
-		Here it is!
+    Here it is!
+    <div>
+
+      <select>
+        <option *ngFor='let site of lstSites' value="sites.value">
+          {{site.label}}
+        </option>
+        <!-- <option *ngFor='let site of lstSites' [value]="Sites.value">
+          {{site.label}}
+        </option> -->
+      </select>
+
+    </div>
+
+
 
     </div>
   
