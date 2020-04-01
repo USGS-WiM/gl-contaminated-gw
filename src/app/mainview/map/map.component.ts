@@ -20,6 +20,9 @@ export class MapComponent implements OnInit {
   ngOnInit() {
 
     let usSites = this._mapService.getUSsiteData();
+
+    let canSites = this._mapService.getCanSiteData();
+
     let canadaSites = this._mapService.getCanadaData(ontarioJSON);
     
     this._mapService.map = L.map('map', {
@@ -36,6 +39,7 @@ export class MapComponent implements OnInit {
     
     this._mapService.sitesLayer = L.featureGroup().addTo(this._mapService.map)
     usSites.addTo(this._mapService.sitesLayer);
+    canSites.addTo(this._mapService.sitesLayer);
     canadaSites.addTo(this._mapService.sitesLayer);
     this._mapService.map.addLayer(this._mapService.sitesLayer);
     

@@ -20,6 +20,12 @@ export class MapService {
   public get SelectedSite(): Observable<any> {
       return this._selectedSiteSubject.asObservable();
   }
+
+  public _selectedCanSiteSubject = new Subject();
+  public get SelectedCansite(): Observable<any> {
+    return this._selectedCanSiteSubject.asObservable();
+  }
+
   public _selectedCanadaSiteSubject = new Subject();
   public get SelectedCanadaSite(): Observable<any> {
       return this._selectedCanadaSiteSubject.asObservable();
@@ -93,7 +99,27 @@ export class MapService {
         return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; };
       });
       return usSites;
+    }
+
+  public getCanSiteData() {
+    const canSites = esri.featureLayer({
+      url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
+      pane: 'sites',
+      //layers: [0]
+      //layerDefs:
+    })
+    const self = this
+    canSites.bindPopup(function(error, featureCollection){
+    if (error || featureCollection.features.length === 0){
+      return false;
+    } else {
+      self._selectedCanSiteSubject.next(featureCollection.features[0].properties.OBJECTID);
+      return 'Federal Site Identifier: ' + featureCollection.features[0].properties.OBJECTID; };
+    });
+     return canSites;
   }
+
+
   public getCanadaData(geoJSON){
     const self = this
     const canadaSites = L.geoJSON(geoJSON, {
