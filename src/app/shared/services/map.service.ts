@@ -106,7 +106,8 @@ export class MapService {
       url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
       pane: 'sites',
       //layers: [0]
-      //layerDefs:
+      //layerDefs: { 0: "Province = 'Ontario'"}
+      where: "Province = 'Ontario'",
     })
     const self = this
     canSites.bindPopup(function(error, featureCollection){
