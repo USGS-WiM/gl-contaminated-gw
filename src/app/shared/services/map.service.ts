@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import ontarioJSONdata from '../../../assets/OntarioClipped_9.26.json';
 import { Observable, Subject } from 'rxjs';
-import { Map, GeoJSON} from 'leaflet';
+import { Map, GeoJSON, latLng, LatLng} from 'leaflet';
 declare let L;
 import 'leaflet';
 import * as esri from 'esri-leaflet';
@@ -20,6 +20,12 @@ export class MapService {
   public get SelectedSite(): Observable<any> {
       return this._selectedSiteSubject.asObservable();
   }
+
+  public _selectedCanSiteSubject = new Subject();
+  public get SelectedCansite(): Observable<any> {
+    return this._selectedCanSiteSubject.asObservable();
+  }
+
   public _selectedCanadaSiteSubject = new Subject();
   public get SelectedCanadaSite(): Observable<any> {
       return this._selectedCanadaSiteSubject.asObservable();
@@ -68,10 +74,11 @@ export class MapService {
     };
 
     this.auxLayers = {
-      basinArea: esri.featureLayer({
-        url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/3',
-        simplifyFactor: 0.35,
-        zIndex: 2
+      basinArea: esri.dynamicMapLayer({
+        url: 'https://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer',
+        pane: 'basins',
+        layers: [3],
+        opacity: .4
       })
     };
    }
@@ -93,33 +100,67 @@ export class MapService {
         return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; };
       });
       return usSites;
-  }
-  public getCanadaData(geoJSON){
-    const self = this
-    const canadaSites = L.geoJSON(geoJSON, {
-      pointToLayer(feature, latlng) {
-        const marker = self.setMarker(feature, self);
-        return L.circleMarker(latlng, marker);
-      },
-      onEachFeature: (feature,lay) => {
-        lay.bindPopup(
-          '<b>Site Name: </b>' +
-          feature.properties.Name +
-          '<br/><b>Federal Site Identifier: </b>' +
-          feature.properties.FederalSit +
-          '<br/><b>Municipality: </b>' +
-          feature.properties.Municipali +
-          '<br/><b>Reason: </b>' +
-          feature.properties.ReasonForF
-          
-        )
-        lay.on('click', function(e) {
-          self._selectedCanadaSiteSubject.next(e.target.feature.properties.Name);
-        })
+    }
+
+  public getCanSiteData() {
+    //const self = this
+    const canSites = esri.featureLayer({
+      url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
+      pane: 'sites',
+      //layers: [0]
+      //layerDefs: { 0: "Province = 'Ontario'"}
+      where: "Province = 'Ontario'",
+      pointToLayer: function(geojson, latlng){
+        return L.circleMarker(latlng, {
+          color: 'red',
+          fillColor: 'red',
+          radius: 4, 
+          weight: 0,
+          opacity: 1,
+          fillopacity: .75
+        });
       }
-    })
-    return canadaSites;
+      // L.icon = function(options){
+      //   return new L.icon(options);
+      // }
+      })
+
+    canSites.bindPopup(function(layer){
+       return 'Site ID: ' + layer.feature.properties.federalSiteID +
+       '<br>Site Name: ' + layer.feature.properties.siteName +
+       '<br>Class: ' + layer.feature.properties.class +
+       '<br>Action Plan: ' + layer.feature.properties.actionPlan
+     })
+
+     return canSites;
   }
+
+  // public getCanadaData(geoJSON){
+  //   const self = this
+  //   const canadaSites = L.geoJSON(geoJSON, {
+  //     pointToLayer(feature, latlng) {
+  //       const marker = self.setMarker(feature, self);
+  //       return L.circleMarker(latlng, marker);
+  //     },
+  //     onEachFeature: (feature,lay) => {
+  //       lay.bindPopup(
+  //         '<b>Site Name: </b>' +
+  //         feature.properties.Name +
+  //         '<br/><b>Federal Site Identifier: </b>' +
+  //         feature.properties.FederalSit +
+  //         '<br/><b>Municipality: </b>' +
+  //         feature.properties.Municipali +
+  //         '<br/><b>Reason: </b>' +
+  //         feature.properties.ReasonForF
+          
+  //       )
+  //       lay.on('click', function(e) {
+  //         self._selectedCanadaSiteSubject.next(e.target.feature.properties.Name);
+  //       })
+  //     }
+  //   })
+  //   return canadaSites;
+  // }
   
   public setMarker(feature, self){
     let fillColor = "red";

@@ -38,7 +38,9 @@
     <!-- Auxlayer content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showAuxLayers }">
       <div id="sidebarAuxLayers" class="sidebarLayer">
-        <div class="basemap" id="layer1" (click)="toggleLayer('basinArea')" [ngClass]="{ active: chosenAuxLayer == 'basinArea' }">Great Lakes Basins</div>
+        <div class="basemap">
+          <input type="checkbox" checked (click)="toggleAuxLayer('basinArea')">Great Lakes Basins<br>
+        </div>
       </div>
     </div>
 
