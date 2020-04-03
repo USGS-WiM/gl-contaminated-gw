@@ -103,22 +103,16 @@ export class MapService {
     }
 
   public getCanSiteData() {
-    //const self = this
+    const self = this
     const canSites = esri.featureLayer({
       url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
       pane: 'sites',
       //layers: [0]
       //layerDefs: { 0: "Province = 'Ontario'"}
       where: "Province = 'Ontario'",
-      pointToLayer: function(geojson, latlng){
-        return L.circleMarker(latlng, {
-          color: 'red',
-          fillColor: 'red',
-          radius: 4, 
-          weight: 0,
-          opacity: 1,
-          fillopacity: .75
-        });
+      pointToLayer: function(feature, latlng){
+        const marker = self.setMarker(feature, self)
+        return L.circleMarker(latlng, marker);
       }
       // L.icon = function(options){
       //   return new L.icon(options);
@@ -163,14 +157,30 @@ export class MapService {
   // }
   
   public setMarker(feature, self){
-    let fillColor = "red";
+    let attr = feature.properties.siteStatus;
+    let fillColor;
+    switch(attr){
+      case 'Closed':
+        fillColor = 'green';
+        break;
+      case "Suspended":
+        fillColor = 'blue';
+        break;
+      case "Active":
+        fillColor = 'red';
+        break;
+      default:
+        fillColor = 'black'
+    }
+    
+    
     return {
       pane: 'sites',
       radius: 4,
       fillColor: fillColor,
       weight: 0,
       opacity: 1,
-      fillopacity: .75
+      fillopacity: .25
     }
 
   }
