@@ -37,10 +37,10 @@ export class SidebarComponent implements OnInit {
     let index = this.displayedAuxLayers.indexOf(newVal);
     if (index > -1){
       this.displayedAuxLayers.splice(index,1);
-      this._mapService.map.removeLayer(this._mapService.auxLayers[newVal]);
+      this._mapService.map.addLayer(this._mapService.auxLayers[newVal]);
     } else {
       this.displayedAuxLayers.push(newVal);
-      this._mapService.map.addLayer(this._mapService.auxLayers[newVal]);
+      this._mapService.map.removeLayer(this._mapService.auxLayers[newVal]);
     }
   }
 
