@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import {MapService} from '../../shared/services/map.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-mainview-dataview',
@@ -9,24 +11,29 @@ import {MapService} from '../../shared/services/map.service';
 export class DataviewComponent implements OnInit {
   dataLoading;
   public collapsedPanel;
+  public usData: any;
+  public canData: any;
 
-  constructor(private _MapService: MapService) { }
-  //usData = this._MapService.getUSsiteData();
-  //canadaData = this._MapService.getCanadaData();
-  
+
+
+  constructor(private _MapService: MapService) {}
+
+/*   usData = this._MapService.getUSsiteData();
+  canData = this._MapService.getCanSiteData(); */
 
   ngOnInit() {
     this._MapService.DataPanelCollapse.subscribe(collapse => {
       this.collapsedPanel = collapse;
     });
 
-    /* this._MapService.SelectedSite.subscribe((res) => {
-        this.usData = res;
-    }); */
-
-   /*  this._MapService.SelectedCanadaSite.subscribe((res) => {
-        this.canadaData = res;
-    }); */
+    this._MapService._selectedSiteSubject.subscribe((data) => {
+      this.usData = data;
+    });
+    
+    this._MapService._selectedCanSiteSubject.subscribe((res) => {
+      this.canData = res;
+   });
   };
+
 
 };

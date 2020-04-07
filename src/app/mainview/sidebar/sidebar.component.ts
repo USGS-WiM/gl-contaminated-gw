@@ -1,8 +1,9 @@
 import { Component, OnInit, Directive, Input } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MapService } from 'src/app/shared/services/map.service';
 import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 import { PromiseType } from 'protractor/built/plugins';
-import { BoundDirectivePropertyAst } from '@angular/compiler';
+import { BoundDirectivePropertyAst, isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-mainview-sidebar',
@@ -10,17 +11,49 @@ import { BoundDirectivePropertyAst } from '@angular/compiler';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  siteFilterFormGroup: FormGroup;
+  siteFilterData;
+  filterSelections;
+  filterOptions = ['EPA Region', 'Site Type'];
   expandSidebar;
   showBasemaps;
   chosenBaseLayer;
   showSection2;
   displayedAuxLayers;
+  profileForm: FormGroup;
 
-  constructor(private _mapService: MapService) {}
+  constructor(private _mapService: MapService, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.displayedAuxLayers = [];
+
+/*     this.profileForm = this._formBuilder.group({
+      firstName: [''],
+      lastName: [''],
+    }) */
+    this.siteFilterData = ['a', 'b']
+    this.siteFilterFormGroup = this._formBuilder.group({
+      //epa region location
+      location: [[]],
+      //map symbol code
+      siteType: [[]]
+      //orgName: [[]],
+      //provider: [[]],
+      //searchType: [[]],
+      //type: [[]]
+  });
+
+  
+
+/*     this._mapService.getUSsiteData().subscribe(response =>{
+      this.siteFilterData = response;
+    }) */
+
+    // this.onChanges();
   }
+
+  
+
   // called from basemap button click in sidebar
   public toggleLayer(newVal: string) {
     this._mapService.chosenBaseLayer = newVal;
@@ -43,6 +76,15 @@ export class SidebarComponent implements OnInit {
       this._mapService.map.removeLayer(this._mapService.auxLayers[newVal]);
     }
   }
+
+
+
+  // public onChanges(): void {
+  //   this.siteFilterFormGroup.valueChanges.subscribe(selections => {
+  //     this.filterSelections = selections;
+  //   });
+  // }
+
 
 
 }

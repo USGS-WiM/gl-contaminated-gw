@@ -39,7 +39,9 @@
     <div class="sidebar-content" [ngClass]="{ expanded: showAuxLayers }">
       <div id="sidebarAuxLayers" class="sidebarLayer">
         <div class="basemap">
-          <input type="checkbox" checked (click)="toggleAuxLayer('basinArea')">Great Lakes Basins<br>
+          <label>
+          <input type="checkbox" checked (click)="toggleAuxLayer('basinArea')"/>Great Lakes Basins<br>
+          </label>
         </div>
       </div>
     </div>
@@ -53,7 +55,42 @@
     <!-- Filters Parameter Content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showSection2 }">
 
-		Here it is!
+<!--       <form [formGroup]='profileForm'>
+
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label>
+
+
+      </form> -->
+      
+<form *ngIf="siteFilterData" [formGroup]="siteFilterFormGroup" id="sidebarSiteFilters">
+
+  <label for="location" class="multiselect-label">EPA Region</label>
+        <ng-select
+        formControlName="location"
+        [items]="siteFilterData.location"
+        [multiple]="true"
+        placeholder="Select">
+        </ng-select> 
+
+  <label for="siteType" class="multiselect-label">Site Type</label>
+      <ng-select
+      formControlName="siteType"
+      [items]="siteFilterData.siteType"
+      [multiple]="true"
+      placeholder="Select">
+      </ng-select>
+
+  </form>
+
+      <button class="clearForm" title="Clear Selections">Clear Selections</button>
 
     </div>
   
