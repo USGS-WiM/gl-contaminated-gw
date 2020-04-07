@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css"
             ],
@@ -92,11 +93,11 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css"
-
             ],
-            "scripts": [              
+            "scripts": [
               "node_modules/leaflet/dist/leaflet.js"
             ]
           }

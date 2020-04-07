@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainviewModule } from './mainview/mainview.module';
+// import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { MainviewModule } from './mainview/mainview.module';
     MainviewModule,
     SharedModule
   ],
+
+  providers: [SharedModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
