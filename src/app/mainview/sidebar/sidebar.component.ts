@@ -12,16 +12,44 @@ import { BoundDirectivePropertyAst } from '@angular/compiler';
 })
 export class SidebarComponent implements OnInit {
   siteFilterFormGroup: FormGroup;
+  siteFilterData;
+  filterSelections;
+  filterOptions = ['EPA Region', 'Site Type'];
   expandSidebar;
   showBasemaps;
   chosenBaseLayer;
   showSection2;
   displayedAuxLayers;
+  profileForm: FormGroup;
 
-  constructor(private _mapService: MapService) {}
+  constructor(private _mapService: MapService, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.displayedAuxLayers = [];
+
+    /*     this.profileForm = this._formBuilder.group({
+      firstName: [''],
+      lastName: [''],
+    }) */
+    this.siteFilterData = ['a', 'b']
+    this.siteFilterFormGroup = this._formBuilder.group({
+      //epa region location
+      location: [[]],
+      //map symbol code
+      siteType: [[]]
+      //orgName: [[]],
+      //provider: [[]],
+      //searchType: [[]],
+      //type: [[]]
+  });
+
+
+
+/*     this._mapService.getUSsiteData().subscribe(response =>{
+      this.siteFilterData = response;
+    }) */
+
+    // this.onChanges();
   }
   // called from basemap button click in sidebar
   public toggleLayer(newVal: string) {
@@ -45,6 +73,13 @@ export class SidebarComponent implements OnInit {
       this._mapService.map.removeLayer(this._mapService.auxLayers[newVal]);
     }
   }
+
+   // public onChanges(): void {
+  //   this.siteFilterFormGroup.valueChanges.subscribe(selections => {
+  //     this.filterSelections = selections;
+  //   });
+  // }
+
 
 
 }
