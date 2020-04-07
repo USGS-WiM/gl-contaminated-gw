@@ -53,7 +53,12 @@
     <!-- Filters Parameter Content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showSection2 }">
 
-		Here it is!
+      <form *ngIf="filterData" [formGroup]="siteFilterDropdownGroup" id="sidebarSiteFilters">
+        <label for=""></label>
+        <ng-select>
+
+        </ng-select>
+      </form>
 
     </div>
   
