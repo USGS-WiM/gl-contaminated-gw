@@ -22,7 +22,7 @@ export class MapService {
   }
 
   public _selectedCanSiteSubject = new Subject();
-  public get SelectedCansite(): Observable<any> {
+  public get SelectedCanSite(): Observable<any> {
     return this._selectedCanSiteSubject.asObservable();
   }
 
