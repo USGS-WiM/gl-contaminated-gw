@@ -1,4 +1,5 @@
 import { Component, OnInit, Directive, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MapService } from 'src/app/shared/services/map.service';
 import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 import { PromiseType } from 'protractor/built/plugins';
@@ -10,6 +11,7 @@ import { BoundDirectivePropertyAst } from '@angular/compiler';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  siteFilterFormGroup: FormGroup;
   expandSidebar;
   showBasemaps;
   chosenBaseLayer;

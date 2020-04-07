@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedModule } from './shared/shared.module';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,11 @@ export class AppComponent {
   title = 'gl-contaminated-gw';
   aboutModal;
   expandSidebar;
-}
+
+  constructor(private _SharedModule: SharedModule){}
+
+
+  ngOnInit(){}
+  }
+
+
