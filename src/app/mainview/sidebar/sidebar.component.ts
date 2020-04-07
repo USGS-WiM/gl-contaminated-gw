@@ -1,9 +1,9 @@
 import { Component, OnInit, Directive, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MapService } from 'src/app/shared/services/map.service';
 import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 import { PromiseType } from 'protractor/built/plugins';
-import { BoundDirectivePropertyAst, isNgTemplate } from '@angular/compiler';
+import { BoundDirectivePropertyAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-mainview-sidebar',
@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.displayedAuxLayers = [];
 
-/*     this.profileForm = this._formBuilder.group({
+    /*     this.profileForm = this._formBuilder.group({
       firstName: [''],
       lastName: [''],
     }) */
@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
       //type: [[]]
   });
 
-  
+
 
 /*     this._mapService.getUSsiteData().subscribe(response =>{
       this.siteFilterData = response;
@@ -51,9 +51,6 @@ export class SidebarComponent implements OnInit {
 
     // this.onChanges();
   }
-
-  
-
   // called from basemap button click in sidebar
   public toggleLayer(newVal: string) {
     this._mapService.chosenBaseLayer = newVal;
@@ -77,9 +74,7 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-
-
-  // public onChanges(): void {
+   // public onChanges(): void {
   //   this.siteFilterFormGroup.valueChanges.subscribe(selections => {
   //     this.filterSelections = selections;
   //   });

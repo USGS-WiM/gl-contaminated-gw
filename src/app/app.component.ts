@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-
-import { Sites } from './classes/sites';
 import { SharedModule } from './shared/shared.module';
 
 @Component({
@@ -15,15 +13,8 @@ export class AppComponent {
 
   constructor(private _SharedModule: SharedModule){}
 
-  lstSites: Sites[];
-  ngOnInit(){
 
-    this._SharedModule.getSites()
-    .subscribe(
-      data=>{
-        this.lstSites = data;
-      }
-    )
+  ngOnInit(){}
   }
 
-}
+

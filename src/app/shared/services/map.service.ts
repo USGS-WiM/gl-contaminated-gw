@@ -91,19 +91,19 @@ export class MapService {
         layerDefs: { 0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'" }
     })
       // tslint:disable-next-line: only-arrow-functions
-      const self = this
+      //const self = this
       usSites.bindPopup(function(error, featureCollection) {
       if (error || featureCollection.features.length === 0) {
         return false;
       } else {
-        self._selectedSiteSubject.next(featureCollection.features[0].properties.OBJECTID);
+        this._selectedSiteSubject.next(featureCollection.features[0].properties.OBJECTID);
         return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; };
       });
       return usSites;
     }
 
   public getCanSiteData() {
-    const self = this
+    const self = this;
     const canSites = esri.featureLayer({
       url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
       pane: 'sites',
@@ -111,7 +111,7 @@ export class MapService {
       //layerDefs: { 0: "Province = 'Ontario'"}
       where: "Province = 'Ontario'",
       pointToLayer: function(feature, latlng){
-        const marker = self.setMarker(feature, self)
+        const marker = self.setMarker(feature);
         return L.circleMarker(latlng, marker);
       }
       // L.icon = function(options){
@@ -156,21 +156,21 @@ export class MapService {
   //   return canadaSites;
   // }
   
-  public setMarker(feature, self){
+  public setMarker(feature){
     let attr = feature.properties.siteStatus;
     let fillColor;
     switch(attr){
       case 'Closed':
         fillColor = 'green';
         break;
-      case "Suspended":
+      case "Suspected":
         fillColor = 'blue';
         break;
       case "Active":
         fillColor = 'red';
         break;
       default:
-        fillColor = 'black'
+        fillColor = 'gray';
     }
     
     
