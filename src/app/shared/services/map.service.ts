@@ -89,7 +89,6 @@ export class MapService {
    }
 
   public getUSsiteData(){
-      //const self = this;
       const usSites = esri.dynamicMapLayer({
         url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
         pane: 'sites',
@@ -131,20 +130,15 @@ export class MapService {
     }
 
   public getCanSiteData() {
-    //const self = this;
     const canSites = esri.featureLayer({
       url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
       pane: 'sites',
-      //layers: [0]
-      //layerDefs: { 0: "Province = 'Ontario'"}
       where: "Province = 'Ontario'",
       pointToLayer: (feature, latlng) => {
         const marker = this.setMarker(feature);
         return L.circleMarker(latlng, marker);
       }
-      // L.icon = function(options){
-      //   return new L.icon(options);
-      // }
+      
       })
 
     canSites.bindPopup(layer => {
@@ -172,7 +166,6 @@ export class MapService {
       }
       
      })
-
      return canSites;
   }
 
@@ -219,8 +212,6 @@ export class MapService {
       default:
         fillColor = 'gray';
     }
-    
-    
     return {
       pane: 'sites',
       radius: 4,
@@ -231,9 +222,6 @@ export class MapService {
     }
 
   }
-
-  
-
 
 }
 
