@@ -91,22 +91,39 @@
 		<app-tabs>
 			<tab [tabTitle]="'About This'">
 				<br/>
-				<h6>What is this?</h6>
+				<h6>About this Application</h6>
 
 				<p>
-					We're not sure.
+					A comprehensive view of contaminated sites in the Great Lakes region for both U.S. and Canada
 				</p>
 			</tab>
-			<tab [tabTitle]="'Tab 2'">
+			<tab [tabTitle]="'Data Sources'">
 				<br/>
-				<h6>Another tab?</h6>
-				<p style="margin-bottom: 0;">Whoa!</p>
+				<h6>U.S. EPA Data</h6>
+				<p style="margin-bottom: 0;">
+					Documentation: 
+					<a href="https://www.epa.gov/cleanups/cimc-about-data" target=
+					"_blank"> https://www.epa.gov/cleanups/cimc-about-data</a>
+				</p>
+				<p style="margin-bottom: 0;">
+					REST Services: 
+					<a href="https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer/" target="_blank"> EPA Cleanups in My Community (CIMC) services</a>
+				</p>
+				<h6>Environment Canada Data</h6>
+				<p style="margin-bottom: 0;">
+					REST Services:
+					<a href="https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer"> Federal Contaminated Sites Inventory (FCSI) services (updated annually)</a>
+				</p>
+				<p style="margin-bottom: 0;">
+					Documentation: 
+					<a href="https://www.tbs-sct.gc.ca/fcsi-rscf/home-accueil-eng.aspx" target="_blank"> https://www.tbs-sct.gc.ca/fcsi-rscf/home-accueil-eng.aspx</a>
+				</p>
 			</tab>
 			<tab [tabTitle]="'Another one'">
 					<br/>
-					<h6>And another one?!</h6>
+					<h6>Software</h6>
 					<p>
-						Wow!
+						Angular 8
 					</p>
 				</tab>
 			</app-tabs>

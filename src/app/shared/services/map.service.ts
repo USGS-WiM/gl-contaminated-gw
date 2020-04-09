@@ -5,6 +5,7 @@ import { Map, GeoJSON, latLng, LatLng} from 'leaflet';
 declare let L;
 import 'leaflet';
 import * as esri from 'esri-leaflet';
+import { PromiseType } from 'protractor/built/plugins';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class MapService {
   public auxLayers: any;
   public chosenBaseLayer: string;
   public sitesLayer: L.FeatureGroup<any>;
+
+  public siteColors = ['red', 'blue', 'green', 'gray'];
+  public siteCategories = ['Active', 'Suspected', 'Closed', 'Other']
 
   public _selectedSiteSubject = new Subject();
   public get SelectedSite(): Observable<any> {
@@ -85,20 +89,40 @@ export class MapService {
    }
 
   public getUSsiteData(){
+      const self = this;
       const usSites = esri.dynamicMapLayer({
         url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
         pane: 'sites',
         layers: [0],
         layerDefs: { 0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'" }
-    })
-      // tslint:disable-next-line: only-arrow-functions
-      //const self = this
+      })
       usSites.bindPopup(function(error, featureCollection) {
-      if (error || featureCollection.features.length === 0) {
-        return false;
-      } else {
-        this._selectedSiteSubject.next(featureCollection.features[0].properties.OBJECTID);
-        return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; };
+        if (error || featureCollection.features.length === 0) {
+          return false;
+        } else {
+          let props = featureCollection.features[0].properties;
+          //self._selectedSiteSubject.next(featureCollection.features[0].properties);  //to use later in data view
+          //superfund
+          if (props['Superfund Site ID'] != "Null"){
+            return "Superfund Site: " + props['Superfund Site ID'];
+          }
+          if (props['Brownfield Property ID'] != "Null"){
+            return "Brownfield Site: " + props['Brownfield Property ID'];
+          }
+          if (props['OSC Site ID'] != "Null"){
+            return "OSC Site: " + props['OSC Site ID'];
+          }
+          if (props['OSC Site ID'] != "Null"){
+            return "OSC Site: " + props['OSC Site ID'];
+          }
+          if (props['RCRA Corrective Action'] != "Null"){
+            return "RCRA: " + props['RCRA Corrective Action'];
+          } else{
+            return "Unknown Site Type";
+          }
+
+          //return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; 
+        };
       });
       return usSites;
     }
@@ -111,7 +135,7 @@ export class MapService {
       //layers: [0]
       //layerDefs: { 0: "Province = 'Ontario'"}
       where: "Province = 'Ontario'",
-      pointToLayer: function(feature, latlng){
+      pointToLayer: (feature, latlng) => {
         const marker = self.setMarker(feature);
         return L.circleMarker(latlng, marker);
       }
@@ -120,11 +144,30 @@ export class MapService {
       // }
       })
 
-    canSites.bindPopup(function(layer){
-       return 'Site ID: ' + layer.feature.properties.federalSiteID +
-       '<br>Site Name: ' + layer.feature.properties.siteName +
-       '<br>Class: ' + layer.feature.properties.class +
-       '<br>Action Plan: ' + layer.feature.properties.actionPlan
+    canSites.bindPopup(layer => {
+      let prop = layer.feature.properties;
+      if (prop.propertyTypeName == "Federal"){
+        return '<b>Property Type: Federal Site <b><br>' +
+        'Site ID: ' + layer.feature.properties.federalSiteID +
+        '<br>Site Name: ' + layer.feature.properties.siteName +
+        '<br>Class: ' + layer.feature.properties.class +
+        '<br>Action Plan: ' + layer.feature.properties.actionPlan
+      }
+      if (prop.propertyTypeName == "Canada Lan"){
+        return '<b>Property Type: Canada Land <b><br>' +
+        'Site ID: ' + layer.feature.properties.federalSiteID +
+        '<br>Site Name: ' + layer.feature.properties.siteName +
+        '<br>Class: ' + layer.feature.properties.class +
+        '<br>Action Plan: ' + layer.feature.properties.actionPlan
+      }
+      if (prop.propertyTypeName == "Non-Federa"){
+        return '<b>Property Type: Non-Federal <b><br>' +
+        'Site ID: ' + layer.feature.properties.federalSiteID +
+        '<br>Site Name: ' + layer.feature.properties.siteName +
+        '<br>Class: ' + layer.feature.properties.class +
+        '<br>Action Plan: ' + layer.feature.properties.actionPlan
+      }
+      
      })
 
      return canSites;
