@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   filterOptions = ['EPA Region', 'Site Type'];
   expandSidebar;
   showBasemaps;
+  showAuxLayers;
   chosenBaseLayer;
   showSection2;
   displayedAuxLayers;
