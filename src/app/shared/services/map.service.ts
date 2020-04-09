@@ -11,6 +11,7 @@ import * as esri from 'esri-leaflet';
 })
 export class MapService {
   public map: Map;
+  public legend: any;
   public baseMaps: any;
   public auxLayers: any;
   public chosenBaseLayer: string;

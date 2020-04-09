@@ -12,7 +12,8 @@ jobs:
     - name: GitHub Action for npm
       uses: actions/setup-node@v1
       with:
-        args: run-script build
+        node-version: '10.15'
+    - run: npm run-script build
     - name: GitHub Action for AWS
       uses: actions/aws/configure-aws-credentials@v1
       with:
