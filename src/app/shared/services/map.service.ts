@@ -89,19 +89,19 @@ export class MapService {
    }
 
   public getUSsiteData(){
-      const self = this;
+      //const self = this;
       const usSites = esri.dynamicMapLayer({
         url: 'https://map22.epa.gov/arcgis/rest/services/cimc/Cleanups/MapServer',
         pane: 'sites',
         layers: [0],
         layerDefs: { 0: "EPA_REGION_CODE = '05' OR EPA_REGION_CODE = '02' OR EPA_REGION_CODE = '03'" }
       })
-      usSites.bindPopup(function(error, featureCollection) {
+      usSites.bindPopup((error, featureCollection) => {
         if (error || featureCollection.features.length === 0) {
           return false;
         } else {
           let props = featureCollection.features[0].properties;
-          //self._selectedSiteSubject.next(featureCollection.features[0].properties);  //to use later in data view
+          this._selectedSiteSubject.next(featureCollection.features[0].properties);  //to use later in data view
           //superfund
           if (props['Superfund Site ID'] != "Null"){
             return "Superfund Site: " + props['Superfund Site ID'];
@@ -115,20 +115,23 @@ export class MapService {
           if (props['OSC Site ID'] != "Null"){
             return "OSC Site: " + props['OSC Site ID'];
           }
-          if (props['RCRA Corrective Action'] != "Null"){
-            return "RCRA: " + props['RCRA Corrective Action'];
+          if (props['OSC Site ID'] != "Null"){
+            return "OSC Site: " + props['OSC Site ID'];
+          }
+          if (props['Federal Facilities*'] != "Null"){
+            //can further differentiate here
+            return "Federal Facility Agency: " + props['Federal Facilities Docket Federal Agency'] +
+            "<br>EPA ID: " + props['EPA ID'];
           } else{
             return "Unknown Site Type";
           }
-
-          //return 'Site ID: ' + featureCollection.features[0].properties.OBJECTID; 
         };
       });
       return usSites;
     }
 
   public getCanSiteData() {
-    const self = this;
+    //const self = this;
     const canSites = esri.featureLayer({
       url: 'https://services1.arcgis.com/VrOlGiblUSWCQy8E/ArcGIS/rest/services/Federal_Contaminated_Sites/FeatureServer/0',
       pane: 'sites',
@@ -136,7 +139,7 @@ export class MapService {
       //layerDefs: { 0: "Province = 'Ontario'"}
       where: "Province = 'Ontario'",
       pointToLayer: (feature, latlng) => {
-        const marker = self.setMarker(feature);
+        const marker = this.setMarker(feature);
         return L.circleMarker(latlng, marker);
       }
       // L.icon = function(options){
