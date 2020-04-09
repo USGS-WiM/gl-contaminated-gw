@@ -20,7 +20,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
-    - run : aws s3 cp /home/runner/work/GL-CONTAMINATED-GW/dist/ s3://test.wim.usgs.gov/gl-cont-gw/ --recursive
+    - run : aws s3 cp /home/runner/work/gl-contaminated-gw/dist/ s3://test.wim.usgs.gov/gl-cont-gw/ --recursive
     - name: GitHub Action for Slack
       uses: Ilshidur/action-slack@9273a03
       env:
