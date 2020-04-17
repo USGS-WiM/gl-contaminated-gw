@@ -21,9 +21,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-    const usSites = this._mapService.QueryUSData();
-
-    const canSites = this._mapService.QueryData();
+   
 
     // let canadaSites = this._mapService.getCanadaData(ontarioJSON);
     
@@ -32,12 +30,14 @@ export class MapComponent implements OnInit {
       zoom: 5,
       renderer: L.canvas()
     });
+    this._mapService.QueryUSData();
+    this._mapService.QueryCanadaData();
     //keeps the geojson always on the top of all other layers
     this._mapService.map.createPane('basins');
     //this._mapService.map.getPane('basins').style.zIndex = '1';
     this._mapService.map.createPane('sites');
     this._mapService.map.addLayer(this._mapService.baseMaps[this._mapService.chosenBaseLayer]);
-    this._mapService.map.addLayer(this._mapService.auxLayers['basinArea'])
+    
     
     this._mapService.sitesLayer = L.featureGroup().addTo(this._mapService.map)
     //usSites.addTo(this._mapService.sitesLayer);
@@ -45,6 +45,7 @@ export class MapComponent implements OnInit {
     //canSites.addTo(this._mapService.sitesLayer);
     // canadaSites.addTo(this._mapService.sitesLayer);
     this._mapService.map.addLayer(this._mapService.sitesLayer);
+    this._mapService.map.addLayer(this._mapService.auxLayers['basinArea']);
 
     this._mapService.legend = new L.Control({position: 'bottomright'});
 
