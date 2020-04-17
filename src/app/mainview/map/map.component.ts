@@ -5,6 +5,7 @@ import basins_2k from './basin_simple_2km.json';
 import {MapService} from '../../shared/services/map.service'
 import {Map} from 'leaflet';
 import * as L from 'leaflet';
+import * as esri from 'esri-leaflet';
 
 @Component({
   selector: 'app-mainview-map',
@@ -20,9 +21,9 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-    let usSites = this._mapService.getUSsiteData();
+    const usSites = this._mapService.QueryUSData();
 
-    let canSites = this._mapService.getCanSiteData();
+    const canSites = this._mapService.QueryData();
 
     // let canadaSites = this._mapService.getCanadaData(ontarioJSON);
     
@@ -39,12 +40,11 @@ export class MapComponent implements OnInit {
     this._mapService.map.addLayer(this._mapService.auxLayers['basinArea'])
     
     this._mapService.sitesLayer = L.featureGroup().addTo(this._mapService.map)
-    usSites.addTo(this._mapService.sitesLayer);
-    canSites.addTo(this._mapService.sitesLayer);
+    //usSites.addTo(this._mapService.sitesLayer);
+
+    //canSites.addTo(this._mapService.sitesLayer);
     // canadaSites.addTo(this._mapService.sitesLayer);
     this._mapService.map.addLayer(this._mapService.sitesLayer);
-
-
 
     this._mapService.legend = new L.Control({position: 'bottomright'});
 
@@ -71,23 +71,14 @@ export class MapComponent implements OnInit {
             }
           });
           return div;
-
-        
     }
-
     this._mapService.legend.addTo(this._mapService.map);
-
-    
-    
-     
-
 
     this._mapService.DataPanelCollapse.subscribe(collapse => {
       this.collapsedDataPanel = collapse;
     });
 
     
-  
     //let usSites = this._mapService.getUSsiteData();
 
     //add empty feature group
