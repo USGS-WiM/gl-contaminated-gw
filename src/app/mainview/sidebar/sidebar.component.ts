@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.displayedAuxLayers = [];
+    
 
     /*     this.profileForm = this._formBuilder.group({
       firstName: [''],
