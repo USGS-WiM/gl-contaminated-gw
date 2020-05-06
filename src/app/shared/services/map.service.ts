@@ -173,24 +173,37 @@ export class MapService {
               .bindPopup(layer => {
                 let prop = layer.feature.properties;
                 if (prop.SF_SITE_ID != null){
-                  return '<b>Property Type: Superfund Site <b><br>' +
-                  'Site ID: ' + prop.SF_SITE_ID 
+                  return '<b>Property Type: Superfund Site </b><br>' +
+                  '<b>Site ID: </b>' + prop.SF_SITE_ID + '<br>' +
+                  '<b>Name: </b>' + prop.PRIMARY_NAME + '<br>' +
+                  '<b>Site URL:</b> <a href="' + prop.RCRA_DRUPAL_SITE_NODEID + '">' + prop.RCRA_DRUPAL_SITE_NODEID + "</a>"
                 }
                 if (prop.BF_PROPERTY_ID != null){
-                  return '<b>Property Type: Brownfield Site <b><br>' +
-                  'Site ID: ' + prop.BF_PROPERTY_ID
+                  return '<b>Property Type: Brownfield Site </b><br>' +
+                  '<b>Site ID: </b>' + prop.BF_PROPERTY_ID + '<br>' +
+                  '<b>Name: </b>' + prop.PRIMARY_NAME + '<br>' +
+                  '<b>Remedy Completion Indicator: </b>' + prop.RCRA_REMEDY_COMPLT_IND + '<br>' + 
+                  '<b>Site URL:</b> <a href="' + prop.RCRA_DRUPAL_SITE_NODEID + '">' + prop.RCRA_DRUPAL_SITE_NODEID + "</a>"
+
                 }
                 if (prop.EPAOSC_SITE_ID != null ){
-                  return '<b>Property Type: OSC Site <b><br>' +
-                  'Site ID: ' + prop.EPAOSC_SITE_ID
+                  return '<b>Property Type: OSC Site </b><br>' +
+                  '<b>Site ID: </b>' + prop.EPAOSC_SITE_ID + '<br>' + 
+                  '<b>Name: </b>' + prop.PRIMARY_NAME + '<br>' + 
+                  '<b>OSC Status: </b>' + prop.EPAOSC_STATUS + '<br>' + 
+                  '<b>Site URL:</b> <a href="' + prop.URL + '">' + prop.URL + "</a>"
                 }
                 if (prop.RCRA_HANDLER_ID != null ){
-                  return '<b>Property Type: RCRA Site <b><br>' +
-                  'Site ID: ' + prop.RCRA_HANDLER_ID
+                  return '<b>Property Type: RCRA Site </b><br>' +
+                  '<b>Site ID:</b> ' + prop.RCRA_HANDLER_ID + '<br>' + 
+                  '<b>Name: </b>' + prop.PRIMARY_NAME + '<br>' + 
+                  '<b>Remedy Completion Indicator: </b>' + prop.RCRA_REMEDY_COMPLT_IND + '<br>' + 
+                  '<b>Site URL:</b> <a href="' + prop.RCRA_DRUPAL_SITE_NODEID + '">' + prop.RCRA_DRUPAL_SITE_NODEID + "</a>"
                 }
                 if (prop["FD_*"] != null ){
-                  return '<b>Property Type: Federal Facility <b><br>' +
-                  'Federal Facility Agency: ' + prop.FD_FEDERAL_AGENCY
+                  return '<b>Property Type: Federal Facility </b><br>' +
+                  '<b>Federal Facility Agency:</b> ' + prop.FD_FEDERAL_AGENCY + 
+                  '<b>Site URL:</b> <a href="' + prop.URL + '">' + prop.URL + "</a>"
                 }
                 else{
                   return "<b>Unknown Site Type<b>"
@@ -221,25 +234,40 @@ export class MapService {
               .bindPopup(layer => {
                 let prop = layer.feature.properties;
                 if (prop.propertyTypeName == "Federal"){
-                  return '<b>Property Type: Federal Site <b><br>' +
-                  'Site ID: ' + layer.feature.properties.federalSiteID +
-                  '<br>Site Name: ' + layer.feature.properties.siteName +
-                  '<br>Class: ' + layer.feature.properties.class +
-                  '<br>Action Plan: ' + layer.feature.properties.actionPlan
+                  return '<b>Property Type: Federal Site </b><br>' +
+                  '<b>Site ID</b>: ' + layer.feature.properties.federalSiteID +
+                  '<br><b>Site Name: </b>' + layer.feature.properties.siteName +
+                  '<br><b>Site Status: </b>' + layer.feature.properties.siteStatus +
+                  '<br><b>Status Detail: </b>' + layer.feature.properties.status +
+                  '<br><b>Class: </b>' + layer.feature.properties.class +
+                  '<br><b>Contaminants: </b>' + layer.feature.properties.mediumContaminants +
+                  '<br><b>Involvement: </b>' + layer.feature.properties.involvement +
+                  '<br><b>Reporting Organization: </b>' + layer.feature.properties.reportingOrganization +
+                  '<br><b>Action Plan: </b>' + layer.feature.properties.actionPlan
                 }
                 if (prop.propertyTypeName == "Canada Lan"){
                   return '<b>Property Type: Canada Land <b><br>' +
-                  'Site ID: ' + layer.feature.properties.federalSiteID +
-                  '<br>Site Name: ' + layer.feature.properties.siteName +
-                  '<br>Class: ' + layer.feature.properties.class +
-                  '<br>Action Plan: ' + layer.feature.properties.actionPlan
+                  '<b>Site ID</b>: ' + layer.feature.properties.federalSiteID +
+                  '<br><b>Site Name: </b>' + layer.feature.properties.siteName +
+                  '<br><b>Site Status: </b>' + layer.feature.properties.siteStatus +
+                  '<br><b>Status Detail: </b>' + layer.feature.properties.status +
+                  '<br><b>Class: </b>' + layer.feature.properties.class +
+                  '<br><b>Contaminants: </b>' + layer.feature.properties.mediumContaminants +
+                  '<br><b>Involvement: </b>' + layer.feature.properties.involvement +
+                  '<br><b>Reporting Organization: </b>' + layer.feature.properties.reportingOrganization +
+                  '<br><b>Action Plan: </b>' + layer.feature.properties.actionPlan
                 }
                 if (prop.propertyTypeName == "Non-Federa"){
                   return '<b>Property Type: Non-Federal <b><br>' +
-                  'Site ID: ' + layer.feature.properties.federalSiteID +
-                  '<br>Site Name: ' + layer.feature.properties.siteName +
-                  '<br>Class: ' + layer.feature.properties.class +
-                  '<br>Action Plan: ' + layer.feature.properties.actionPlan
+                  '<b>Site ID</b>: ' + layer.feature.properties.federalSiteID +
+                  '<br><b>Site Name: </b>' + layer.feature.properties.siteName +
+                  '<br><b>Site Status: </b>' + layer.feature.properties.siteStatus +
+                  '<br><b>Status Detail: </b>' + layer.feature.properties.status +
+                  '<br><b>Class: </b>' + layer.feature.properties.class +
+                  '<br><b>Contaminants: </b>' + layer.feature.properties.mediumContaminants +
+                  '<br><b>Involvement: </b>' + layer.feature.properties.involvement +
+                  '<br><b>Reporting Organization: </b>' + layer.feature.properties.reportingOrganization +
+                  '<br><b>Action Plan: </b>' + layer.feature.properties.actionPlan
                 }
                 
                 })
