@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 
+/** *
+ * Loader Commponent
+*/
+
 @Component({
     selector: 'app-loading-screen',
     templateUrl: './loader.component.html',

@@ -1,0 +1,697 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gl-contaminated-gw documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">gl-contaminated-gw documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>MapComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/mainview/map/map.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-mainview-map</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./map.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./map.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#collapsedDataPanel">collapsedDataPanel</a>
+                            </li>
+                            <li>
+                                <a href="#collapsedMap">collapsedMap</a>
+                            </li>
+                            <li>
+                                <a href="#legendExpanded">legendExpanded</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#expandCollapseDataPanel">expandCollapseDataPanel</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#resizeMap">resizeMap</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_mapService: <a href="../injectables/MapService.html">MapService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/mainview/map/map.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_mapService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MapService.html" target="_self" >MapService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expandCollapseDataPanel"></a>
+                    <span class="name">
+                        <b>
+                            expandCollapseDataPanel
+                        </b>
+                        <a href="#expandCollapseDataPanel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>expandCollapseDataPanel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/mainview/map/map.component.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/mainview/map/map.component.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resizeMap"></a>
+                    <span class="name">
+                        <b>
+                            resizeMap
+                        </b>
+                        <a href="#resizeMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resizeMap()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/mainview/map/map.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="collapsedDataPanel"></a>
+                        <span class="name">
+                            <b>
+                            collapsedDataPanel</b>
+                            <a href="#collapsedDataPanel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/mainview/map/map.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="collapsedMap"></a>
+                        <span class="name">
+                            <b>
+                            collapsedMap</b>
+                            <a href="#collapsedMap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/mainview/map/map.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="legendExpanded"></a>
+                        <span class="name">
+                            <b>
+                            legendExpanded</b>
+                            <a href="#legendExpanded"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/mainview/map/map.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import ontarioJSON from &#x27;../../../assets/OntarioClipped_9.26.json&#x27;; //https://github.com/angular/angular/issues/30802  //https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+import basins_2k from &#x27;./basin_simple_2km.json&#x27;;
+// tslint:disable-next-line: max-line-length
+import {MapService} from &#x27;../../shared/services/map.service&#x27;
+import {Map} from &#x27;leaflet&#x27;;
+import * as L from &#x27;leaflet&#x27;;
+import * as esri from &#x27;esri-leaflet&#x27;;
+
+@Component({
+  selector: &#x27;app-mainview-map&#x27;,
+  templateUrl: &#x27;./map.component.html&#x27;,
+  styleUrls: [&#x27;./map.component.scss&#x27;]
+})
+export class MapComponent implements OnInit {
+  collapsedMap;
+  collapsedDataPanel;
+  legendExpanded &#x3D; true;
+
+  constructor(private _mapService: MapService) { }
+
+  ngOnInit() {
+
+   
+
+    // let canadaSites &#x3D; this._mapService.getCanadaData(ontarioJSON);
+    
+    this._mapService.map &#x3D; L.map(&#x27;map&#x27;, {
+      center: L.latLng(43.3, -84.6),
+      zoom: 5,
+      renderer: L.canvas()
+    });
+    this._mapService.QueryUSData();
+    this._mapService.QueryCanadaData();
+    //keeps the geojson always on the top of all other layers
+    this._mapService.map.createPane(&#x27;basins&#x27;);
+    //this._mapService.map.getPane(&#x27;basins&#x27;).style.zIndex &#x3D; &#x27;1&#x27;;
+    this._mapService.map.createPane(&#x27;sites&#x27;);
+    this._mapService.map.addLayer(this._mapService.baseMaps[this._mapService.chosenBaseLayer]);
+    
+    
+    this._mapService.sitesLayer &#x3D; L.featureGroup().addTo(this._mapService.map)
+    //usSites.addTo(this._mapService.sitesLayer);
+
+    //canSites.addTo(this._mapService.sitesLayer);
+    // canadaSites.addTo(this._mapService.sitesLayer);
+    this._mapService.map.addLayer(this._mapService.sitesLayer);
+    this._mapService.map.addLayer(this._mapService.auxLayers[&#x27;basinArea&#x27;]);
+
+    this._mapService.legend &#x3D; new L.Control({position: &#x27;bottomright&#x27;});
+
+    this._mapService.legend.onAdd &#x3D; function (map){
+      const div &#x3D; L.DomUtil.create(&quot;div&quot;, &#x27;info legend&#x27;);
+      let item &#x3D; &quot;&quot;;
+
+      item +&#x3D; &#x27;&lt;div id&#x3D;&quot;LegendHeader&quot; &gt;&lt;span&gt;&lt;i class&#x3D;&quot;fa fa-list&quot;&gt;&lt;/i&gt;Explanation&lt;/span&gt;&lt;/div&gt;&#x27;+
+        &#x27;&lt;div id&#x3D;&quot;legendDiv&quot;&gt;&lt;br&gt;&#x27;;
+           item +&#x3D; &#x27;&lt;i class&#x3D;&quot;site multiple-types&quot;&gt;&lt;/i&gt;Multiple&lt;/div&gt;&#x27;;
+           div.innerHTML &#x3D; item;
+           div.id &#x3D; &#x27;legend&#x27;;
+
+           L.DomEvent.on(div, &#x27;click&#x27;, (event) &#x3D;&gt; {
+            // if click is in Explanation title, collapse/expand it.
+            const id &#x3D; event.target[&#x27;id&#x27;];
+            if (&#x27;legendHeader&#x27;) {
+                const classes &#x3D; document.getElementById(&#x27;legendDiv&#x27;).classList;
+                if (classes.contains(&#x27;legendDiv-collapsed&#x27;)) {
+                    classes.remove(&#x27;legendDiv-collapsed&#x27;);
+                } else {
+                    classes.add(&#x27;legendDiv-collapsed&#x27;);
+                }
+            }
+          });
+          return div;
+    }
+    this._mapService.legend.addTo(this._mapService.map);
+
+    this._mapService.DataPanelCollapse.subscribe(collapse &#x3D;&gt; {
+      this.collapsedDataPanel &#x3D; collapse;
+    });
+
+    
+    //let usSites &#x3D; this._mapService.getUSsiteData();
+
+    //add empty feature group
+    //this.sitesLayer &#x3D; L.featureGroup().addTo(this._mapService.map);
+    
+    //keeps the geojson always on the top of all other layers
+    /* this.map.createPane(&#x27;basins&#x27;);
+    this.map.createPane(&#x27;geojson&#x27;); */
+
+    
+  }
+
+  expandCollapseDataPanel() {
+    this._mapService.dataPanelCollapseSubject.next(!this.collapsedDataPanel);
+  }
+
+  resizeMap() {
+    setTimeout(() &#x3D;&gt; {
+        this._mapService.map.invalidateSize()
+    }, 150);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;collapsible-header&quot;&gt;
+
+&lt;/div&gt;
+
+&lt;div id&#x3D;&quot;mapWrapper&quot; [ngClass]&#x3D;&quot;{ &#x27;collapsed&#x27;: collapsedMap, &#x27;expanded&#x27;: collapsedDataPanel }&quot;&gt;
+	&lt;div id&#x3D;&quot;map&quot;&gt;&lt;/div&gt;
+   
+	
+	&lt;div id&#x3D;&quot;toggleMap&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;!collapsedDataPanel&quot; (click)&#x3D;&quot;collapsedMap &#x3D; !collapsedMap; resizeMap();&quot;&gt;
+            &lt;i class&#x3D;&quot;far&quot; [ngClass]&#x3D;&quot;{ &#x27;fa-expand&#x27;: collapsedMap, &#x27;fa-minus-square&#x27;: !collapsedMap }&quot;&gt;&lt;/i&gt;
+            &lt;b *ngIf&#x3D;&quot;collapsedMap&quot;&gt;Expand Map&lt;/b&gt;
+            &lt;b *ngIf&#x3D;&quot;!collapsedMap&quot;&gt;Collapse Map&lt;/b&gt;
+        &lt;/div&gt;
+        &lt;div *ngIf&#x3D;&quot;!collapsedMap&quot; (click)&#x3D;&quot;expandCollapseDataPanel(); resizeMap();&quot;&gt;
+            &lt;i class&#x3D;&quot;far&quot; [ngClass]&#x3D;&quot;{ &#x27;fa-expand&#x27;: collapsedDataPanel, &#x27;fa-minus-square&#x27;: !collapsedDataPanel }&quot;&gt;&lt;/i&gt;
+            &lt;b *ngIf&#x3D;&quot;!collapsedDataPanel&quot;&gt;Collapse Data Panel&lt;/b&gt;
+            &lt;b *ngIf&#x3D;&quot;collapsedDataPanel&quot;&gt;Expand Data Panel&lt;/b&gt;
+        &lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./map.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host ::ng-deep{
+    #legendHeader span{
+        font-style: normal;
+        text-transform: none !important;
+        font-weight: 500;
+        font-size: 14px !important;
+        letter-spacing: 0.3px;
+        color: rgb(111, 117, 142);
+    }
+
+    #legendHeader{
+        padding: 8px;
+        cursor: pointer;
+        background-color: white;
+        text-align: center;
+    }
+    
+    .legendDiv-collapsed{
+        display: none;
+    }
+
+    #legendDiv{
+        padding: 6px 8px;
+    }
+
+    .fa-list{
+        margin-top: 3px;
+    }
+    
+    #legend{
+        min-width: 200px;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="collapsible-header"></div><div id="mapWrapper" [ngClass]="{ \'collapsed\': collapsedMap, \'expanded\': collapsedDataPanel }">	<div id="map"></div>   		<div id="toggleMap">        <div *ngIf="!collapsedDataPanel" (click)="collapsedMap = !collapsedMap; resizeMap();">            <i class="far" [ngClass]="{ \'fa-expand\': collapsedMap, \'fa-minus-square\': !collapsedMap }"></i>            <b *ngIf="collapsedMap">Expand Map</b>            <b *ngIf="!collapsedMap">Collapse Map</b>        </div>        <div *ngIf="!collapsedMap" (click)="expandCollapseDataPanel(); resizeMap();">            <i class="far" [ngClass]="{ \'fa-expand\': collapsedDataPanel, \'fa-minus-square\': !collapsedDataPanel }"></i>            <b *ngIf="!collapsedDataPanel">Collapse Data Panel</b>            <b *ngIf="collapsedDataPanel">Expand Data Panel</b>        </div>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataLoaderComponent', 'selector': 'app-dataloader-div'},{'name': 'DataviewComponent', 'selector': 'app-mainview-dataview'},{'name': 'LoaderComponent', 'selector': 'app-loading-screen'},{'name': 'MapComponent', 'selector': 'app-mainview-map'},{'name': 'SidebarComponent', 'selector': 'app-mainview-sidebar'},{'name': 'TabComponent', 'selector': 'tab'},{'name': 'TabsComponent', 'selector': 'app-tabs'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'MapComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MapComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
