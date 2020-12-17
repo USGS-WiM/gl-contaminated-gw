@@ -3,17 +3,17 @@
   id="sidebarToggle"
   (click)="expandSidebar = !expandSidebar"
   [ngClass]="{ 'fa-bars': !expandSidebar, 'fa-times': expandSidebar }"
-  ></i>
+></i>
 
-<div id="sidebar" [ngClass]="{ 'expanded': expandSidebar }">
-
-
+<div id="sidebar" [ngClass]="{ expanded: expandSidebar }">
   <!-- Scrolling sidebar content -->
   <div class="sidebar-scroll">
-
-
     <!--  Sidebar Basemaps  -->
-    <div class="sidebar-header" (click)="showBasemaps = !showBasemaps" [ngClass]="{ expanded: showBasemaps }">
+    <div
+      class="sidebar-header"
+      (click)="showBasemaps = !showBasemaps"
+      [ngClass]="{ expanded: showBasemaps }"
+    >
       <i class="fal fa-map"></i>
       <b><span>Basemaps</span></b>
     </div>
@@ -21,16 +21,62 @@
     <!-- Basemaps content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showBasemaps }">
       <div id="sidebarBasemaps" class="sidebarLayer">
-        <div class="basemap" id="basemap1" (click)="toggleLayer('OpenStreetMap')" [ngClass]="{ active: chosenBaseLayer == 'OpenStreetMap' }">Streets</div>
-        <div class="basemap" id="basemap2" (click)="toggleLayer('Topo')" [ngClass]="{ active: chosenBaseLayer == 'Topo' }">Topographic</div>
-        <div class="basemap" id="basemap4" (click)="toggleLayer('Terrain')" [ngClass]="{ active: chosenBaseLayer == 'Terrain' }">Terrain</div>
-        <div class="basemap" id="basemap5" (click)="toggleLayer('Satellite')" [ngClass]="{ active: chosenBaseLayer == 'Satellite' }">Satellite</div>
-        <div class="basemap" id="basemap5" (click)="toggleLayer('Gray')" [ngClass]="{ active: chosenBaseLayer == 'Gray' }">Gray</div>
-        <div class="basemap" id="basemap6" (click)="toggleLayer('Nautical')" [ngClass]="{ active: chosenBaseLayer == 'Nautical' }">Nautical</div>
+        <div
+          class="basemap"
+          id="basemap1"
+          (click)="toggleLayer('OpenStreetMap')"
+          [ngClass]="{ active: chosenBaseLayer == 'OpenStreetMap' }"
+        >
+          Streets
+        </div>
+        <div
+          class="basemap"
+          id="basemap2"
+          (click)="toggleLayer('Topo')"
+          [ngClass]="{ active: chosenBaseLayer == 'Topo' }"
+        >
+          Topographic
+        </div>
+        <div
+          class="basemap"
+          id="basemap4"
+          (click)="toggleLayer('Terrain')"
+          [ngClass]="{ active: chosenBaseLayer == 'Terrain' }"
+        >
+          Terrain
+        </div>
+        <div
+          class="basemap"
+          id="basemap5"
+          (click)="toggleLayer('Satellite')"
+          [ngClass]="{ active: chosenBaseLayer == 'Satellite' }"
+        >
+          Satellite
+        </div>
+        <div
+          class="basemap"
+          id="basemap5"
+          (click)="toggleLayer('Gray')"
+          [ngClass]="{ active: chosenBaseLayer == 'Gray' }"
+        >
+          Gray
+        </div>
+        <div
+          class="basemap"
+          id="basemap6"
+          (click)="toggleLayer('Nautical')"
+          [ngClass]="{ active: chosenBaseLayer == 'Nautical' }"
+        >
+          Nautical
+        </div>
       </div>
     </div>
 
-    <div class="sidebar-header" (click)="showAuxLayers = !showAuxLayers" [ngClass]="{ expanded: showAuxLayers }">
+    <div
+      class="sidebar-header"
+      (click)="showAuxLayers = !showAuxLayers"
+      [ngClass]="{ expanded: showAuxLayers }"
+    >
       <i class="fal fa-object-group"></i>
       <b><span>Additional Layers</span></b>
     </div>
@@ -40,22 +86,32 @@
       <div id="sidebarAuxLayers" class="sidebarLayer">
         <div class="basemap">
           <label>
-          <input type="checkbox" checked (click)="toggleAuxLayer('basinArea')"/>Great Lakes Basins<br>
+            <input
+              type="checkbox"
+              checked
+              (click)="toggleAuxLayer('basinArea')"
+            />Great Lakes Basins<br />
+          </label>
+          <label>
+            <input type="checkbox" (click)="toggleAuxLayer('hydro')" />Surface
+            Hydrography<br />
           </label>
         </div>
       </div>
     </div>
 
-
-    <div class="sidebar-header" (click)="showSection2 = !showSection2" [ngClass]="{ expanded: showSection2 }">
+    <div
+      class="sidebar-header"
+      (click)="showSection2 = !showSection2"
+      [ngClass]="{ expanded: showSection2 }"
+    >
       <i class="fal fa-filter"></i>
       <b><span>Data Filters</span></b>
     </div>
 
     <!-- Filters Parameter Content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showSection2 }">
-
-<!--       <form [formGroup]='profileForm'>
+      <!--       <form [formGroup]='profileForm'>
 
         <label>
           First Name:
@@ -69,36 +125,42 @@
 
 
       </form> -->
-      
-<form *ngIf="siteFilterData" [formGroup]="siteFilterFormGroup" id="sidebarSiteFilters">
 
-  <label for="location" class="multiselect-label">EPA Region</label>
+      <form
+        *ngIf="siteFilterData"
+        [formGroup]="siteFilterFormGroup"
+        id="sidebarSiteFilters"
+      >
+        <label for="location" class="multiselect-label">EPA Region</label>
         <ng-select
-        formControlName="location"
-        [items]="siteFilterData.location"
-        [multiple]="true"
-        placeholder="Select">
-        </ng-select> 
+          formControlName="location"
+          [items]="siteFilterData.location"
+          [multiple]="true"
+          placeholder="Select"
+        >
+        </ng-select>
 
-  <label for="siteType" class="multiselect-label">Site Type</label>
-      <ng-select
-      formControlName="siteType"
-      [items]="siteFilterData.siteType"
-      [multiple]="true"
-      placeholder="Select">
-      </ng-select>
+        <label for="siteType" class="multiselect-label">Site Type</label>
+        <ng-select
+          formControlName="siteType"
+          [items]="siteFilterData.siteType"
+          [multiple]="true"
+          placeholder="Select"
+        >
+        </ng-select>
+      </form>
 
-  </form>
-
-      <button class="clearForm" title="Clear Selections">Clear Selections</button>
-
+      <button class="clearForm" title="Clear Selections">
+        Clear Selections
+      </button>
     </div>
-  
   </div>
-
-
 </div>
 <!-- End Sidebar -->
 
 <!-- Sidebar lightbox for mobile -->
-<div id="sidebarLightbox" [ngClass]="{ visible: expandSidebar }" (click)="expandSidebar = false"></div>
+<div
+  id="sidebarLightbox"
+  [ngClass]="{ visible: expandSidebar }"
+  (click)="expandSidebar = false"
+></div>
