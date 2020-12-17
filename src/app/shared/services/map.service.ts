@@ -902,6 +902,10 @@ export class MapService {
         opacity: 0.89,
         displayOnDefault: false,
       }),
+      AOC: esri.featureLayer({
+        url:
+          "https://services.arcgis.com/cJ9YHowT8TU7DUyn/ArcGIS/rest/services/epa_areas_of_concern_glahf_viewlayer/FeatureServer/0",
+      }),
     };
 
     this.QueryCanadaData();
