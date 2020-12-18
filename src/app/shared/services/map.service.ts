@@ -48,7 +48,7 @@ export class MapService {
     this.chosenBaseLayer = "Topo";
 
     //tell the app which Aux layers to load on default -- be sure to set box to checked in sidebar template
-    this.defaultAuxLayers = ["basinArea"];
+    this.defaultAuxLayers = ["basinArea", "Aquifer"];
 
     //simplified GL basin outline to use as a query feature.
     this.basinPolygon = {
@@ -902,6 +902,17 @@ export class MapService {
         opacity: 0.89,
         displayOnDefault: false,
       }),
+      AOC: esri.featureLayer({
+        url:
+          "https://services.arcgis.com/cJ9YHowT8TU7DUyn/ArcGIS/rest/services/epa_areas_of_concern_glahf_viewlayer/FeatureServer/0",
+      }),
+      Aquifer: L.tileLayer(
+        "https://nwismapper.s3.amazonaws.com/pr_aq/{z}/{y}/{x}.png",
+        {
+          maxZoom: 12,
+          errorTileUrl: "https://nwismapper.s3.amazonaws.com/blank.png",
+        }
+      ),
     };
 
     this.QueryCanadaData();

@@ -84,18 +84,35 @@
     <!-- Auxlayer content -->
     <div class="sidebar-content" [ngClass]="{ expanded: showAuxLayers }">
       <div id="sidebarAuxLayers" class="sidebarLayer">
-        <div class="basemap">
-          <label>
+        <div>
+          <label class="basemap">
             <input
               type="checkbox"
               checked
               (click)="toggleAuxLayer('basinArea')"
             />Great Lakes Basins<br />
           </label>
-          <label>
-            <input type="checkbox" (click)="toggleAuxLayer('hydro')" />Surface
-            Hydrography<br />
-          </label>
+          <div>
+            <label class="basemap">
+              <input type="checkbox" (click)="toggleAuxLayer('hydro')" />Surface
+              Hydrography<br />
+            </label>
+          </div>
+          <div>
+            <label class="basemap">
+              <input type="checkbox" (click)="toggleAuxLayer('AOC')" />Great
+              Lakes Areas of Concern<br />
+            </label>
+          </div>
+          <div>
+            <label class="basemap">
+              <input
+                type="checkbox"
+                checked
+                (click)="toggleAuxLayer('Aquifer')"
+              />Principal Aquifers<br />
+            </label>
+          </div>
         </div>
       </div>
     </div>
