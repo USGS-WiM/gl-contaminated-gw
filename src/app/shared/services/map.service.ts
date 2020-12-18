@@ -48,7 +48,7 @@ export class MapService {
     this.chosenBaseLayer = "Topo";
 
     //tell the app which Aux layers to load on default -- be sure to set box to checked in sidebar template
-    this.defaultAuxLayers = ["basinArea", "Aquifer"];
+    this.defaultAuxLayers = ["basinArea"];
 
     //simplified GL basin outline to use as a query feature.
     this.basinPolygon = {
@@ -912,6 +912,18 @@ export class MapService {
           maxZoom: 12,
           errorTileUrl: "https://nwismapper.s3.amazonaws.com/blank.png",
         }
+      ),
+      bedrockGeoCan: esri.dynamicMapLayer({
+        url:
+          "https://geoappext.nrcan.gc.ca/arcgis/rest/services/MMS/GMRC_E/MapServer",
+        layers: [0],
+        pane: "basins",
+        f: "image",
+        opacity: 0.9,
+      }),
+      //need better metadata to know what this actually is
+      bedrockUS: L.tileLayer(
+        "https://mrdata.usgs.gov/mapcache/wmts/1.0.0/sgmc2contact/default/g/{z}/{y}/{x}.png"
       ),
     };
 

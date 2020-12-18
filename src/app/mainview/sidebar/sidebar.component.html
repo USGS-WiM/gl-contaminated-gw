@@ -94,8 +94,8 @@
           </label>
           <div>
             <label class="basemap">
-              <input type="checkbox" (click)="toggleAuxLayer('hydro')" />Surface
-              Hydrography<br />
+              <input type="checkbox" (click)="toggleAuxLayer('hydro')" />
+              Surface Hydrography<br />
             </label>
           </div>
           <div>
@@ -106,11 +106,24 @@
           </div>
           <div>
             <label class="basemap">
+              <input type="checkbox" (click)="toggleAuxLayer('Aquifer')" />U.S.
+              Principal Aquifers<br />
+            </label>
+          </div>
+          <div>
+            <label class="basemap">
               <input
                 type="checkbox"
-                checked
-                (click)="toggleAuxLayer('Aquifer')"
-              />Principal Aquifers<br />
+                (click)="toggleAuxLayer('bedrockGeoCan')"
+              />Canada Bedrock Geology<br />
+            </label>
+          </div>
+          <div>
+            <label class="basemap">
+              <input
+                type="checkbox"
+                (click)="toggleAuxLayer('bedrockUS')"
+              />U.S. Bedrock Geology?<br />
             </label>
           </div>
         </div>
